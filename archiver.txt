@@ -1,0 +1,22 @@
+#!/bin/bash
+###########################################################
+#######################Archiver############################
+###########################################################
+#demander le dossier source 
+source=$(zenity --file-selection --title="Sélectionnez un dossier (source)"  --directory --multiple --filename="/")
+#si on click sur annuler
+if [ $? == 1 ]; then bash menu ; fi
+#Annuler
+
+#demander le dossier cible
+cible=$(zenity --file-selection --title="Sélectionnez un dossier (cible) "  --directory --multiple --filename="/")
+#si on click sur annuler
+if [ $? == 1 ]; then bash menu ; fi
+#Annuler
+
+#archiver
+
+Archiver $cible $source
+
+Progressebar $source $cible
+

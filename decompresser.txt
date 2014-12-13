@@ -1,0 +1,57 @@
+#!/bin/bash
+###########################################################
+#####################Decompresser##########################
+###########################################################
+
+#demander le type de décompression
+typeDecompression=$(zenity --list \
+--title="choisir type de compression" \
+--text="choisir type de compression" \
+--column "type de Compression" \
+Gunzip \
+bunzip2 \
+);
+#si on click sur annuler
+if [ $? == 1 ]; then bash menu ; fi
+############################################################# gzip
+if [ $typeDecompression = Gunzip ];then
+#source 
+source=$(zenity --file-selection --title="Sélectionnez un dossier (source)"  --directory --multiple --filename="/")
+#si on click sur annuler
+if [ $? == 1 ]; then exit; fi
+#Annuler
+
+#cible
+cible=$(zenity --file-selection --title="Sélectionnez un dossier (cible) "  --directory --multiple --filename="/")
+#si on click sur annuler
+if [ $? == 1 ]; then exit; fi
+#Annuler
+
+#compresser
+decompressergunzip cible source
+
+fi
+############################################################# bzip2
+if [ $typeDecompression = Bunzip2 ];then
+#source 
+source=$(zenity --file-selection --title="Sélectionnez un dossier (source)"  --directory --multiple --filename="/")
+#si on click sur annuler
+if [ $? == 1 ]; then exit; fi
+#Annuler
+
+#cible
+cible=$(zenity --file-selection --title="Sélectionnez un dossier (cible) "  --directory --multiple --filename="/")
+#si on click sur annuler
+if [ $? == 1 ]; then exit; fi
+#Annuler
+
+#compresser
+decompresserbunzip2 cible source
+
+
+
+Progressebar $source $cible
+if
+
+fi
+

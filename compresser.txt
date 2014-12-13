@@ -1,0 +1,56 @@
+#!/bin/bash
+###########################################################
+#######################Compresser##########################
+###########################################################
+
+#demander le type de compression
+typeCompression=$(zenity --list \
+--title="choisir type de compression" \
+--text="choisir type de compression" \
+--column "type de Compression" \
+Gzip \
+Bzip2 \
+);
+#si on click sur annuler
+if [ $? == 1 ]; then bash menu ; fi
+
+############################################################# gzip
+if [ $typeCompression = Gzip ];then
+#demander le dossier source 
+source=$(zenity --file-selection --title="Sélectionnez un dossier (source)"  --directory --multiple --filename="/")
+#si on click sur annuler
+if [ $? == 1 ]; then exit; fi
+#Annuler
+
+#demander le dossier cible
+cible=$(zenity --file-selection --title="Sélectionnez un dossier (cible) "  --directory --multiple --filename="/")
+#si on click sur annuler
+if [ $? == 1 ]; then exit; fi
+#Annuler
+
+#compresser
+compressergzip cible source
+#ovrir le cible
+############################################################# bzip2
+elif [ $typeCompression = Bzip2 ];then
+#demander le dossier source 
+source=$(zenity --file-selection --title="Sélectionnez un dossier (source)"  --directory --multiple --filename="/")
+#si on click sur annuler
+if [ $? == 1 ]; then exit; fi
+#Annuler
+
+#demander le dossier cible
+cible=$(zenity --file-selection --title="Sélectionnez un dossier (cible) "  --directory --multiple --filename="/")
+#si on click sur annuler
+if [ $? == 1 ]; then exit; fi
+#Annuler
+
+#compresser
+compresserbzip2 cible source
+
+
+
+
+
+Progressebar $source $cible
+fi

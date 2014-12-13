@@ -1,0 +1,27 @@
+#!/bin/bash
+###########################################################
+#demander le type d'opération
+choix=$(zenity --list \
+--title="archivage et (dé)compression" \
+--text="Que voluez vous faire ?" \
+--column "choisir l'opération" \
+Archivage \
+Compression \
+Décompression \
+);
+#si on click sur annuler
+if [ $? == 1 ]; then exit; fi 
+
+if [ $choix = Archivage ];then
+
+bash archiver
+
+elif [ $choix = Compression ];then
+
+bash compresser
+
+elif [ $choix = Décompression ];then
+
+bash decompresser
+
+if
