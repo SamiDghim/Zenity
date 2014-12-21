@@ -2,38 +2,32 @@
 ###########################################################
 #####################Progressebar##########################
 ###########################################################
-$1 ===> source ; $2===> cible
+# $1 --> source ; $2 --> destination ; $3 --> choix
 (
  echo "10" ; sleep 1
- echo "20" ; sleep 1
+echo "# envoie des fichiers de $1 vers $2" ; sleep 1
+echo "20" ; sleep 1
+echo "# cette opération prend quelques minutes " ; sleep 1
  echo "50" ; sleep 1
+echo "# attendre jusqu'à fin de l'action" ; sleep 1
  echo "75" ; sleep 1
- echo "100"; sleep 1
+echo "# veuillez patientez" ; sleep 1 
+echo "100"; sleep 1
+echo "# fin d'opération" ; sleep 1
 ) |
 zenity --progress \
-  --title=$1 \
+  --title="attendre pour :  $3" \
   --auto-close \
-  --text=$2 \
+  --text="" \
   --percentage=0
   
 
-if [ "$?" = -1 ] ; then
+if [ $? == 1 ] ; then
   zenity --error \
     --text="opération annulée."	
+exit
 fi
-}
-#Ouvrir le cible
 
+#ouvrir le dossier cible
+nautilus $2 
 ##################################################################
-
-
-
-
-
-
-
-
-
-
-
-
